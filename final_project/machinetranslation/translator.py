@@ -10,11 +10,9 @@ load_dotenv()
 apikey = os.environ['apikey']
 url = os.environ['url']
 
-versiondate = datetime.today().strftime('%Y-%m-%d')
-
 authenticatorKey = IAMAuthenticator(apikey)
 language_translator = LanguageTranslatorV3(
-    version=versiondate,
+    version='2018-05-01',
     authenticator=authenticatorKey
 )
 
@@ -29,3 +27,5 @@ def french_to_english(french_text):
     translate = language_translator.translate(text=french_text, model_id='fr-en').get_result()
     english_text = translate['translations'][0]['translation']
     return english_text
+
+test = english_to_french("Hello")
